@@ -17,7 +17,7 @@ class Day(models.IntegerChoices):
     SUNDAY = 6
 
 class StoreTiming(models.Model):
-    store = models.ForeignKey(Store, on_delete=models.CASCADE)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name="timings")
     day = models.IntegerField(choices=Day.choices)
     start_time = models.TimeField()
     end_time = models.TimeField()
@@ -31,9 +31,22 @@ class StoreStatus(models.IntegerChoices):
 
 
 class StoreStatusLog(models.Model):
-    store = models.ForeignKey(Store, on_delete=models.CASCADE)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name="status_logs")
     status = models.IntegerField(choices=StoreStatus.choices)
     timestamp = models.DateTimeField(verbose_name="Time Stamp in UTC",null=True,blank=True)
 
+    def get_local_timestamp(self):
+        return self.timestamp.astimezone(self.store.timezone_str)
+    
     def __str__(self):
         return f"{self.store.store_id} - {self.status} - {self.timestamp}"
+
+
+class ReportStatus(models.IntegerChoices):
+    PENDING = 0
+    COMPLETED = 1
+
+class StoreReport(models.Model):
+    store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name="reports")
+    status = models.IntegerField(choices=ReportStatus.choices)
+    report_url = models.FileField(upload_to="reports",null=True,blank=True)
