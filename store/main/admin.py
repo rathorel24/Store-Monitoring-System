@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Store, StoreStatusLog, StoreTiming
+from .models import Store, StoreStatusLog, StoreTiming, StoreReport
 
 # Register your models here.
 @admin.register(Store)
@@ -18,6 +18,13 @@ class StoreTimingAdmin(admin.ModelAdmin):
 @admin.register(StoreStatusLog)
 class StoreStatusLogAdmin(admin.ModelAdmin):
     list_display = ('store', 'status', 'timestamp')
+    raw_id_fields = ('store',)
+    list_filter = ('status',)
+    search_fields = ('store_id',)
+
+@admin.register(StoreReport)
+class StoreReportAdmin(admin.ModelAdmin):
+    list_display = ('store', 'status', 'report_url')
     raw_id_fields = ('store',)
     list_filter = ('status',)
     search_fields = ('store_id',)

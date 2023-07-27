@@ -144,5 +144,4 @@ myenv/*
 .reviewboardrc
 
 bin/*
-lib64/*
 pyvenv.cfg
