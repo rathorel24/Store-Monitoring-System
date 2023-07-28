@@ -9,7 +9,9 @@ import os
 
 def trigger_report_combined(report):
     csv_data = []
-    stores = Store.objects.all()[:100]
+    
+    # only triggering report for first 200 stores
+    stores = Store.objects.all()[:200]
     for store in stores:
         print(store)
         data = generate_report_data(store)
