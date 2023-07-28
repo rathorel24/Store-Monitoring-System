@@ -6,8 +6,7 @@ import datetime
 
 from main.models import Store
 stores = Store.objects.all()[:50]
-from main.helper import generate_report
+from main.helper import trigger_report_async
 
-for store in stores:
-    report = StoreReport.objects.create(store=store, status=ReportStatus.PENDING)
-    generate_report(store,report)
+
+trigger_report_async()

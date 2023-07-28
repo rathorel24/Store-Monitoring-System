@@ -47,6 +47,6 @@ class ReportStatus(models.IntegerChoices):
     COMPLETED = 1
 
 class StoreReport(models.Model):
-    store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name="reports")
+    store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name="reports",null=True,blank=True)
     status = models.IntegerField(choices=ReportStatus.choices)
     report_url = models.FileField(upload_to="reports",null=True,blank=True)

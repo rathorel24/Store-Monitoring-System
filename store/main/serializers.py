@@ -1,8 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers 
 
-from .models import Store, StoreStatusLog
-
-class StoreSerializer(ModelSerializer):
-    class Meta:
-        model = Store
-        fields = "__all__"
+class ReportSerializer(serializers.Serializer):
+    report_id = serializers.IntegerField()
