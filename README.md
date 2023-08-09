@@ -21,7 +21,7 @@ APIs to output a csv filte o the user that has the following schema
 - Uptime and downtime should only include observations within business hours
 `store_id, uptime_last_hour(in minutes), uptime_last_day(in hours), update_last_week(in hours), downtime_last_hour(in minutes), downtime_last_day(in hours), downtime_last_week(in hours)`
 
-# Soultion: - 
+# Solution: - 
 
 - Tech used: 
 Python Django framework and PostgreSQL database.
